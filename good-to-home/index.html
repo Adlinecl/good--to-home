@@ -1,0 +1,1805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>hao到家</title>
+	<script type="text/javascript" src="./js/jquery-3.2.0.min.js"></script>
+	<style type="text/css">
+		html,body,ul,li,h2,h3,p{
+			padding: 0;
+			margin: 0;
+		}
+		ul li{
+			list-style: none;
+		}
+		a{
+			text-decoration: none;
+		}
+		.clearfix::after{
+			height: 0;
+			content: "";
+			clear: both;
+			display: block;
+		}
+		.top{
+			width: 100%;
+			background-color: #0aa770;
+		}
+		.top-1{
+			width: 100%;
+			border-bottom: 1px solid #099e6a;
+		}
+		.top-bar, .bottom-bar{
+			width: 1190px;
+			margin: 0 auto;
+			/*overflow: hidden;*/
+		}
+		.logo{
+			height: 32px;
+			padding: 14px 0;
+		}
+		.logo>a, .logone>a{
+			display: inline-block;
+		}
+		.logo, .logone{
+			float: left;
+		}
+		.logo1{			
+		    width: 108px;
+		    height: 32px;
+		    background-image: url("./image/hao-logo.041681138.png"); 
+		}
+		.logo2{
+		    height: 26px;
+		    line-height: 26px;
+		    margin-left: 3px;
+		}
+		.logone{
+			margin-left: 5px;
+			position: relative;
+		}
+		.logone1{
+			float: left;
+		    height: 54px;
+		    line-height: 54px;
+		    padding: 6px 15px 0 25px;
+		    padding-top: 6px;
+		    opacity: 0.8;
+		    position: relative;
+		}
+		.logone:hover{
+			background-color: #118860;
+		}
+		.logone>a:hover{
+			color: #fff;
+			opacity: 1;
+		}
+		.logone:hover .logone1-content{
+			display: block;
+		}
+		.logone1-content{
+			padding: 15px;
+		    font-size: 12px;
+		    background-color: rgba(17,136,96,.9);
+			/*background-color: #118860;*/
+			position: absolute;
+			left: 0;
+			top: 60px;
+			z-index: 2;
+			display: none;
+		}
+		.item1, .item2{
+			position: relative;
+		    width: 190px;
+		    padding-bottom: 8px;
+		    border-bottom: 1px solid #099e6a;
+		    overflow: hidden;
+		}
+		.item2{
+			padding-top: 10px;
+		}
+		.item3{
+			position: relative;
+		    width: 190px;
+		    overflow: hidden;
+		    padding-top: 10px;
+		}
+		.item1>h3, .item2>h3, .item3>h3{
+			float: left;
+			position: absolute;
+		    left: 0;
+		    top: 50%;
+		    margin-top: -20px;
+		    height: 40px;
+		    width: 33px;
+		    color: #fff;
+		}
+		.intruduce{
+			float: right;
+			width: 160px;
+			line-height: 20px;
+			font-size: 12px;
+		}
+		.intruduce>a{
+			height: 20px;
+		    line-height: 20px;
+		    display: inline-block;
+		    text-align: center;
+		    width: 37px;
+		    /*white-space: nowrap;*/
+		    color: #fff;
+		    margin-bottom: 4px;
+		}
+		.intruduce>a:hover{
+			text-decoration: underline;
+			background-color: #00b777;
+		}
+		.logone1 img{
+			/*display: block;*/
+			height: 13px;
+		    width: 13px;
+		    /*left: 10px;
+		    top: 26px;*/
+		}
+		.logone1>span{
+			margin: 0 3px;
+		    font-size: 18px;
+		    color: #fff;
+		    font-weight: 400;
+		}
+		.triangle{
+			height: 0;
+		    line-height: 0;
+		    right: 10px;
+		    top: 31px;
+		    border: 3px solid #0aa770;
+		    border-top-color: #fff;
+		    display: inline-block;
+    		width: 0;
+		}
+		.searcher{
+			overflow: hidden;
+		}
+		.search, .tools{
+			float: right;
+		}
+		.search input{
+			float: left;
+		    width: 280px;
+		    border: 0;
+		    outline: none;
+		    padding: 5px 10px;
+		    font-size: 14px;
+		    height: 22px;
+		    line-height: 22px;
+		    background-color: #fff;
+		    color: #333;
+		    vertical-align: middle;
+		    margin-top: 15px;
+		}
+		.submit{
+			margin-top: 15px;
+			float: left;
+		    width: 80px;
+		    height: 32px;
+		    border: 0;
+		    padding: 0;
+		    background-image: url("./image/search-submit.a72c28474.png");
+		    background-repeat: no-repeat;
+		    background-position: 0 0;
+		    background-color: #118860;
+		}
+		.icon1, .icon2, .icon3{
+			float: left;
+			opacity: 0.8;
+		}
+		.icon1>a, .icon2>a, .icon3>a{
+			display: inline-block;
+			float: left;
+		    height: 22px;
+		    padding: 19px 10px;
+		    padding-right: 6px;
+		    padding-top: 18px;
+		    text-align: center;
+		    height: 22px;
+		    line-height: 22px;
+		    color: #fff;
+		    font-size: 12px;
+		}
+		.icon3{
+			margin-right: 20px;
+		}
+		.one1:hover{
+			color: #fff;
+			opacity: 1;
+			background-color: #118860;
+		}
+		.one-enter:hover{
+			text-decoration: underline;
+		}
+		.left>ul>li{
+			float: left;
+			height: 40px;
+		    line-height: 40px;
+		    padding: 0 10px;
+		    color: #fff;
+		    font-size: 16px;
+		}
+		.left>ul>li:hover{
+			background-color: #00b777
+		}
+		.left{
+			float: left;
+		}
+		.right{
+			float: right;
+			height: 22px;
+		    line-height: 22px;
+		    text-align: center;
+		    overflow: hidden;
+		    width: 200px;
+		    position: relative;
+		    margin-top: 10px;
+		}
+		.top-right{
+			width: 200px;
+			height: 132px;
+			margin-top: -22px;
+		}
+		.right>ul>li{
+			text-align: right;
+			overflow: hidden;
+			font-size: 12px;
+			color: #fff;
+		}
+		.right>ul>li:hover{
+			text-decoration: underline;
+		}
+		.top-middle{
+			width: 100%;
+			height: 345px;
+			background-color: #f4f4f4;
+		}
+		.top-middle-bar{
+			overflow: hidden;
+			width: 1190px;
+			margin: 0 auto;
+		}
+		.film{
+			background-color: #fff;
+			float: left;
+			width: 670px;
+			height: 300px;
+			margin-top: 20px;
+		}
+		.list{
+			margin-top: 20px;
+			float: right;
+			width: 480px;
+    		height: 300px;
+    		/*border: 1px solid red;*/
+		}
+		.film .tab{
+			width: 124px;
+		    height: 305px;
+		    background-color: #0aa770;
+		    float: left;
+		    overflow: hidden;
+		}
+		.tab>li{
+			width: 124px;
+		    height: 50px;
+		    line-height: 50px;
+		    text-indent: 15px;
+		  /*  border-bottom: ;*/
+		}
+		.tab>li>a{
+			display: block;
+			font-size: 15px;
+		    color: #fff;
+		}
+		.tab>li>a:hover{
+			color: #3cb43c;
+			background-color: #fafafa;
+		}
+		.tab .line{
+			border-bottom: 1px dashed #049a66;
+		    /*width: 94px;*/
+		    margin-left: -1px;
+		}
+		.tab .lineone{
+			color: #3cb43c;
+			background-color: #fff;
+		}
+		.line0{
+			position: relative;
+		}
+		.hot{
+			position: absolute;
+			display: block;
+			background-image: url("./image/aio-3ab0ae1_z.22aeda3.png");
+			background-position: -17px -417px;
+			background-repeat: no-repeat;
+			top: 5px;
+		    right: 8px;
+		    width: 18px;
+		    height: 10px;
+		}
+		.tab-picture{
+			width: 546px;
+		    height: 305px;
+		    float: left;
+		}
+		.tab-picture0{
+			width: 546px;
+		    height: 305px;
+		    float: left;
+		    background-color: #fff;
+		}
+		.movie{
+			padding: 15px 20px 20px;
+    		position: relative;
+		}
+		.side-bar{
+			width: 506px;
+		    height: 170px;
+		    position: relative;
+		}
+		.contro{
+			position: absolute;
+		    top: 50%;
+		    margin-top: -30px;
+		    width: 22px;
+		    height: 58px;
+		    border: 1px solid #e5e5e5;
+		    background-color: #f9f9f9;
+		}
+		.contro>span{
+			/*display: block;*/
+			position: absolute;
+		    width: 9px;
+		    height: 17px;
+		    top: 50%;
+		    margin-top: -8px;
+		    left: 50%;
+		    margin-left: -4px;
+		    z-index: 2;
+		}
+		.contro-left{
+			left: 0;
+		}
+		.contro-right{
+			right: 0;
+		}
+		.contro-left>span{
+			background-image: url("./image/aio-0dec155_z.c171fd1.png");
+			background-repeat: no-repeat;
+			background-position: -22px -40px;
+		}
+		.contro-right>span{
+			background-image: url("./image/aio-0dec155_z.c171fd1.png");
+			background-repeat: no-repeat;
+			background-position: -22px -77px;
+		}
+		.view{
+			width: 450px;
+		    height: 170px;
+		    margin: 0 auto;
+		    overflow: hidden;
+		    position: relative;
+		}
+		.movie-list{
+			width: 1350px;
+			/*height: 170px;*/
+			margin-left: -450px;
+		}
+		.movie-list>li{
+			float: left;
+			/*height: 170px;
+			width: 450px;*/
+		}
+		.movie-list>li>a{
+			padding: 0 8px;
+			position: relative;
+		    overflow: hidden;
+		    display: inline-block;
+		    width: 130px;
+		    height: 170px;
+		}
+		.movie-list>li>a>img{
+			display: inline-block;
+			width: 130px;
+		    height: 170px;
+		    z-index: 3;
+		}
+		.selected-bar, .change{
+			margin-top: 20px;
+		}
+		.selected-city{
+			width: 70px;
+		    margin-right: 10px;
+		    /*text-indent: 3px;*/
+		}
+		.selected-city, .selected-film, .selected-movie{
+			float: left;
+		    display: inline;
+		    /*cursor: pointer;*/
+		    height: 28px;
+		    line-height: 28px;
+		    border: 1px solid #e5e5e5;
+		    color: #222;
+		}
+		.selected-film{
+			width: 200px;
+			margin-right: 10px;
+		}
+		.selected-movie{
+			width: 210px;
+            margin-right: 0;
+		}
+		.change{
+			text-align: right;
+		    height: 32px;
+		    line-height: 32px;
+		    float: right;
+		}
+		.change-bar{
+			display: inline-block;
+		    width: 80px;
+		    height: 32px;
+		    line-height: 32px;
+		    background-color: #ff6d00;
+		    color: #fff;
+		    text-decoration: none;
+		    text-align: center;
+		    vertical-align: top;
+		}
+		.list-right{
+			width: 100%;
+		    height: 160px;
+		    border-bottom: 1px dashed #ccc;
+		}
+		.list-content{
+			overflow: hidden;
+    		width: 100%;
+		}
+		.title, .title-one{
+		    font-size: 22px;
+		    font-family: "Microsoft Yahei";
+		    line-height: 38px;
+		    height: 38px;
+		    color: #333;
+		    /*cursor: pointer;*/
+		    display: block;
+        }
+        .title-one{
+        	margin-top: 15px;
+        }
+        .title{
+			margin-top: 7px;
+        }
+        .title0{
+        	font-size: 14px;
+		    font-family: Simsun;
+		    color: #666;
+        }
+        .line{
+        	margin: 0 10px;
+		    width: 1px;
+		    border-left: 1px solid #ccc;
+        }
+        .list-bottom-bar{
+        	width: 100%;
+		    height: 150px;
+		    margin-left: -20px;
+		    padding-top: 11px;
+		    overflow: hidden;
+        }
+        .list-bottom-bar>a{
+        	font-size: 14px;
+		    font-family: Simsun;
+		    line-height: 32px;
+		    color: #666;
+		    margin-left: 20px;
+		    float: left;
+		    height: 32px;
+		    width: 220px;
+		    overflow: hidden;
+        }
+        .list-bottom-bar>a:hover{
+        	color: #f50;
+        	text-decoration: underline;
+        }
+        .title0:hover{
+        	color: #f50;
+        	text-decoration: underline;
+        }
+        .ne:hover{
+        	color: #f50;
+        }
+        .foot-tab{
+        	width: 100%;
+        	background-color: #fff;
+        }
+        .foot-tab-middle{
+        	width: 1190px;
+        	margin: 0 auto;
+        }
+        .foot-tab-bar{
+        	float: left;
+        	margin-right: 10px;
+		    width: 915px;
+        }
+        .foot-tab-bar0{
+			width: 915px;
+		    height: 50px;
+		    background: #0aa770;
+		    margin-top: 20px;
+		    margin-bottom: 10px;
+        }
+		.normal-foot-tab-bar0{
+			position:relative;
+		}
+        .feet{
+        	position: fixed;
+        	top:-20px;
+        }
+        .tabs{
+        	padding-top: 4px;
+        }
+        .tabs>a{
+        	float: left;
+		    width: 72px;
+		    height: 46px;
+		    font-size: 16px;
+		    font-family: "Microsoft YaHei";
+		    line-height: 46px;
+		    text-align: center;
+		    color: #fff;
+        }
+        .tabs .a-first{
+        	width: 71px;
+    		border-left: solid 1px #e9e9e9;
+    		color: #333;
+    		background: #fff;
+        }
+        .foot-tab-content{
+        	/*padding-top: 10px;*/
+        }
+        .foot-tab-list{
+        	padding: 15px 0;
+		    height: 112px;
+		    border-bottom: dashed 1px #eaeaea;
+		    overflow: hidden;
+        }
+        .bar-item1{
+        	float: left;
+		    margin-right: 20px;
+		    width: 150px;
+		    height: 112px;
+        }
+        .bar-item1 img{
+        	width: 148px;
+		    height: 110px;
+		    border: solid 1px #e9e9e9;
+        }
+        .bar-item2{
+        	float: left;
+		    width: 700px;
+		    height: 112px;
+		    color: #999;
+        }
+        .tite{
+        	display: block;
+		    height: 32px;
+		    font-size: 22px;
+		    font-family: "Microsoft Yahei";
+		    line-height: 32px;
+		    color: #333;
+		    overflow: hidden;
+        }
+        .into{
+        	display: block;
+		    padding-top: 9px;
+		    height: 48px;
+		    overflow: hidden;
+		    font-size: 12px;
+		    font-family: Simsun;
+		    line-height: 24px;
+        }
+        .form{
+        	font-size: 12px;
+		    font-family: Simsun;
+		    line-height: 24px;
+        }
+        .form a{
+        	color: #999;
+        }
+        .foot-tab-list:hover{
+        	background-color: #f4f4f4;
+        }
+        .foot-tab-right{
+        	float: right;
+    		width: 265px;
+    		margin-top: 20px;
+        }
+        .slide{
+        	width: 1080px;
+        	margin-left: -270px;
+        }
+        .slide>li{
+        	float: left;
+        }
+        .slide>li>a{
+        	width: 270px;
+    		height: 130px;
+    		display: block;
+    		/*position: absolute;*/
+    		/*right: 0;*/
+        }
+        .slide>li>a>img{
+        	width: 270px;
+    		height: 130px;
+        }
+        .slide1{
+        	position: relative;
+        	width: 270px;
+		    height: 130px;
+		    overflow: hidden;
+        }
+        .tupian-left>img, .tupian-right>img{
+			width: 9px;
+		    height: 17px;
+		    display: inline-block;
+		    margin-top: 16px;
+		    /*text-align: center;*/
+        }
+        .tupian-left, .tupian-right{
+        	width: 22px;
+		    height: 50px;
+		    position: absolute;
+		    background: #000;
+		    opacity: .4;
+		    text-align: center;
+		    top: 45px;
+		    background-repeat: no-repeat;
+        }
+        .tupian-left{
+        	left: 0;
+        }
+        .tupian-right{
+        	right: 0;
+        }
+        .discount{
+        	width: 270px;
+    		height: 172px;
+    		position: relative;
+    		margin-top: 10px;
+    		background: #f4f4f4;
+    		border-top: 1px dashed #ccc;
+    		border-bottom: 1px dashed #ccc;
+        }
+        .card1 h2{
+        	width:78px;
+        	height:30px;
+        	line-height: 30px;
+        	background: #f94977;
+        	font-size: 14px;
+    		border-radius: 20px;
+    		color: #fff;
+    		font-family: Simsun;
+		    text-align: center;
+		    margin: 20px 0 0 18px;
+        }
+        .card2{
+        	margin-top: 0;
+		    width: 270px;
+		    height: 110px;
+		    overflow: hidden;
+		}
+		.card2-word-sss{
+			width: 270px;
+		    height: 110px;
+		}
+		.card2-word{
+			margin: 4px 0 0 18px;
+		}
+        .card2 .card2-word span{
+			color: #666;
+		    font-size: 14px;
+		    font-family: Simsun;
+		    line-height: 30px;   
+        }
+        .card2 .card2-word a{
+        	color: #fff;
+		    float: right;
+		    width: 40px;
+		    height: 24px;
+		    line-height: 24px;
+		    text-align: center;
+		    border-radius: 20px;
+		    margin-right: 20px;
+		    background: #f94977;
+		    margin-top: 6px;
+        }
+        .card3{
+        	width:270px;
+        	height:10px;
+        }
+		.card3 span{
+			width: 6px;
+		    height: 6px;
+		    border-radius: 6px;
+		    margin: 0 4px;
+		    background: #aaa;
+		    display:inline-block;
+		    position: relative;
+		    top:-8px;
+		    left:115px;
+		}
+		.card3 span.active{
+			background: #666;
+		}
+		.last{
+			width: 270px;
+		    height: 620px;
+		    background: #f4f4f4;
+		    border: 1px solid #e9e9e9;
+		    margin-bottom: 20px;
+		    margin-top: 20px;
+		}
+		.normal-one{
+			padding-left: 10px;
+		    padding-top: 20px;
+		    margin-bottom: 5px;
+		    overflow: hidden;
+		}
+		.normal-one i{
+			float: left;
+			background-image: url("./image/icon1.0e7de42.png");
+			background-repeat: no-repeat;
+			width: 113px;
+			height: 38px;
+		}
+		.normal-one a{
+			float: right;
+		    margin-right: 20px;
+		    font-family: Simsun;
+		    font-size: 12px;
+		    color: #666;
+		    margin-top: 4px;
+		}
+		.normal-two{
+			/*margin-top: 44px;*/
+		    width: 100%;
+		    height: 90px;
+		    position: relative;
+		    overflow: hidden;
+		}
+		.page{
+			width: 270px;
+			height: 80px;
+    		overflow: hidden;
+		}
+		.page-one li, .page-one0 li{
+			width: 252px;
+			height: 80px;
+			padding-left: 10px;
+			float: left;
+		}
+		.page-one, .page-one0{
+			width: 1048px;
+			margin-left: -262px;
+		}
+		.page-one li a, .page-one0 li a{
+			width: 80px;
+		    height: 80px;
+		    text-align: center;
+		    display: inline-block;
+		}
+		.page-one li a p, .page-one0 li a p{
+			color: #444;
+			font-size: 14px;
+		    font-family: Simsun;
+		    margin-top: 10px;
+		}
+		.page-one li a:hover p{
+			color: #f50;
+		}
+		.page-one0 li a:hover p{
+			color: #f50;
+		}
+		.a-left i, .a-left0 i, .a-right i, .a-right0 i{
+			width: 8px;
+		    height: 16px;
+		    display: inline-block;
+		    margin-top: 12px;
+		}
+		.a-left i, .a-left0 i{
+			background-repeat: no-repeat;
+			background-image: url("./image/a-left.40f0bff.png");
+		}
+		.a-right i, .a-right0 i{
+			background-repeat: no-repeat;
+			background-image: url("./image/a-right.c4ea321.png");
+		}
+		.a-left, .a-left0{
+			left: 0;
+		}
+		.a-right, .a-right0{
+			right: 0;
+		}
+		.a-left, .a-left0, .a-right, .a-right0{
+			width: 20px;
+		    height: 38px;
+		    position: absolute;
+		    background: #d9d9d9;
+		    text-align: center;
+		    top: 20px;
+		    cursor: pointer;
+		    z-index: 90;
+		}
+		.normal-line{
+			margin: 10px 20px 15px;
+		    border-top: 1px dashed #ccc;
+		    height: 1px;
+		}
+		.normal-content{
+			width: 100%;
+		    height: 114px;
+		    padding-left: 8px;
+		    margin-top: -6px;
+		    overflow: hidden;
+		}
+		.normal-content a{
+			width: 88px;
+		    overflow: hidden;
+		    font-size: 14px;
+		    line-height: 28px;
+		    font-family: Simsun;
+		    color: #666;
+		    float: left;
+		    text-align: center;
+		}
+		.normal-content a:hover{
+			color: #f50;
+			text-decoration: underline;
+		}
+		.last-one0{
+			margin-top: 25px;
+		}
+	</style>
+</head>
+<body>
+	<div class="top">
+		<div class="top-1">
+			<div class="top-bar clearfix">
+				<div class="logo">
+					<a href="#" class="logo1"><img src="./image/hao-logo.041681138.png" alt=""></a>
+					<a href="#" class="logo2"><img src="./image/ba071ea452ea5cc5e4c8e0046c7ae143.jpg" alt=""></a>
+				</div>
+				<div class="logone">
+					<a href="#" class="logone1 one1 on">
+						<img src="./image/icon-grid.0ca60109d.png" alt="">
+						<span>导航</span>
+						<i class="triangle"></i>
+					</a>
+					<div class="logone1-content">
+						<div class="item1 clearfix">
+							<h3>休闲娱乐</h3>
+							<div class="intruduce">
+								<a href="#">电影</a>
+								<a href="#">电影</a>
+								<a href="#">电影</a>
+								<a href="#">电影</a>
+								<a href="#">电影</a>
+								<a href="#">电影</a>
+								<a href="#">电影</a>
+								<a href="#">电影</a>
+								<a href="#">电影</a>
+								<a href="#">电影</a>
+								<a href="#">电影</a>
+								<a href="#">电影</a>
+								<a href="#">电影</a>
+								<a href="#">电影</a>
+								<a href="#">电影</a>
+							</div>
+						</div>
+						<div class="item2 clearfix">
+							<h3>休闲娱乐</h3>
+							<div class="intruduce clearfix">
+								<a href="#">电影</a>
+								<a href="#">电影</a>
+								<a href="#">电影</a>
+								<a href="#">电影</a>
+								<a href="#">电影</a>
+								<a href="#">电影</a>
+								<a href="#">电影</a>
+								<a href="#">电影</a>
+								<a href="#">电影</a>
+								<a href="#">电影</a>
+								<a href="#">电影</a>
+								<a href="#">电影</a>
+								<a href="#">电影</a>
+								<a href="#">电影</a>
+								<a href="#">电影</a>
+							</div>
+						</div>
+						<div class="item3 clearfix">
+							<h3>休闲娱乐</h3>
+							<div class="intruduce clearfix">
+								<a href="#">电影</a>
+								<a href="#">电影</a>
+								<a href="#">电影</a>
+								<a href="#">电影</a>
+								<a href="#">电影</a>
+								<a href="#">电影</a>
+								<a href="#">电影</a>
+								<a href="#">电影</a>
+								<a href="#">电影</a>
+								<a href="#">电影</a>
+								<a href="#">电影</a>
+								<a href="#">电影</a>
+								<a href="#">电影</a>
+								<a href="#">电影</a>
+								<a href="#">电影</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="search searcher">
+					<input type="text" placeholder="9个月夹300娃娃" name="word">
+					<button type="submit" class="submit"></button>
+				</div>
+				<div class="tools">
+					<div class="icon1 one1">
+						<a href="#">
+							<img src="./image/bear.c5c2ea590.png" alt="">
+							<span class="one-enter">一键登录</span>
+						</a>
+					</div>
+					<div class="icon2 one1">
+						<a href="#">
+							<img src="./image/qrcode.0e3ec503c.png" alt="">
+							<span>手机版</span>
+						</a>
+					</div>
+					<div class="icon3 one1">
+						<a href="#">
+							<img src="./image/home.12c5791cc.png" alt="">
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="top-2">
+			<div class="bottom-bar clearfix">
+				<div class="left">
+					<ul class="clearfix">
+						<li>首页</li>
+						<li>实用查询</li>
+						<li>快递·到家</li>
+						<li>美食</li>
+						<li>健康</li>
+						<li>交通违章查询</li>
+					</ul>
+				</div>
+				<div class="right">
+					<ul class="clearfix top-right">
+						<li>C罗蝉联足球先生</li>
+						<li>尬舞在尴尬中退潮</li>
+						<li>1年9项发明专利</li>
+						<li>十九届政治局常委</li>
+						<li>吴尊爱妻罕见露面</li>
+						<li>俄官员枪杀4军人</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="top-middle">
+		<div class="top-middle-bar">
+			<div class="film">
+				<ul class="tab">
+					<li class="line0">
+						<a href="#"class="lineone">电影·订座</a>
+						<span class="hot"></span>
+					</li>
+					<li class="line"><a href="#">电影·订座</a></li>
+					<li class="line"><a href="#">电影·订座</a></li>
+					<li class="line"><a href="#">电影·订座</a></li>
+					<li class="line"><a href="#">电影·订座</a></li>
+					<li class="line"><a href="#">电影·订座</a></li>
+				</ul>
+				<ul class="tab-picture clearfix">
+					<li class="tab-picture0">
+						<div class="movie">
+							<div class="side-bar">
+								<div class="contro contro-left"><span></span></div>
+								<div class="contro contro-right"><span></span></div>
+								<div class="view">
+									<ul class="movie-list clearfix">
+										<li><a href="#"><img src="./image/4e4a20a4462309f759c3f013790e0cf3d7cad607.jpg" alt=""></a>
+											<a href="#"><img src="./image/6a63f6246b600c3321047390114c510fd9f9a16d.jpg" alt=""></a>
+											<a href="#"><img src="./image/6f061d950a7b0208d6e260f569d9f2d3572cc8ff.jpg" alt=""></a>
+										</li>
+										<li class="selected"><a href="#"><img src="./image/8d5494eef01f3a29d0076ee39225bc315d607cd4.jpg" alt=""></a>
+											<a href="#"><img src="./image/9e3df8dcd100baa1c09edea44c10b912c8fc2e7a.jpg" alt=""></a>
+											<a href="#"><img src="./image/37d12f2eb9389b50fd80122d8e35e5dde7116e56.jpg" alt=""></a>
+										</li>
+										<li><a href="#"><img src="./image/c75c10385343fbf25eccff39bb7eca8064388fcc.jpg" alt=""></a>
+											<a href="#"><img src="./image/bd315c6034a85edfd5a6f15c42540923dd5475a2.jpg" alt=""></a>
+											<a href="#"><img src="./image/c83d70cf3bc79f3df7467651b1a1cd11728b292f.jpg" alt="">
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="selected-bar">
+								<div class="city clearfix">
+									<div class="selected-city">
+										<span>吉林</span>
+									</div>
+									<div class="selected-film">
+										<span>选影院</span>
+									</div>
+									<div class="selected-movie">
+										<span>选影片</span>
+									</div>
+								</div>
+								<div class="change">
+									<a href="#" class="change-bar">选座订票</a>
+								</div>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="list">
+				<div class="list-right">
+					<div class="list-content">
+						<a href="#" class="title ne">睡觉流口水竟然暗示这些疾病的发生</a>
+						<a href="#" class="title0">上班族坐姿歪致失眠<i class="line"></i></a>
+						<a href="#" class="title0">秋乏多吃碱性食物<i class="line"></i></a>
+						<a href="#" class="title0">喝酒脸红咋解决</a>
+					</div>
+					<div class="list-content">
+						<a href="#" class="title-one ne">睡觉流口水竟然暗示这些疾病的发生</a>
+						<a href="#" class="title0">上班族坐姿歪致失眠<i class="line"></i></a>
+						<a href="#" class="title0">秋乏多吃碱性食物<i class="line"></i></a>
+						<a href="#" class="title0">喝酒脸红咋解决</a>
+					</div>
+				</div>
+				<div class="list-bottom">
+					<div class="list-bottom-bar">
+						<a href="#">三招帮你把办公室变成减压中心</a>
+						<a href="#">三招帮你把办公室变成减压中心</a>
+						<a href="#">三招帮你把办公室变成减压中心</a>
+						<a href="#">三招帮你把办公室变成减压中心</a>
+						<a href="#">三招帮你把办公室变成减压中心</a>
+						<a href="#">三招帮你把办公室变成减压中心</a>
+						<a href="#">三招帮你把办公室变成减压中心</a>
+						<a href="#">三招帮你把办公室变成减压中心</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="foot-tab">
+		<div class="foot-tab-middle clearfix">
+			<div class="foot-tab-bar">
+				<div class="foot-tab-bar0">
+					<div class="tabs">
+						<a href="#" class="a-first">热门</a>
+						<a href="#">本地</a>
+						<a href="#">养生</a>
+						<a href="#">女性</a>
+						<a href="#">美食</a>
+					</div>
+				</div>
+				<div class="foot-tab-content">
+					<div class="foot-tab-one">
+						<div class="foot-tab-list">
+							<a href="#" class="bar-item1">
+								<img src="./image/f5fade11967b0995803a52a81f70a94a.jpg" alt="">
+							</a>
+							<div class="bar-item2">
+								<a href="#" class="tite">王者荣耀的五个废材英雄：韩信上榜第一名胜率垫底</a>
+								<p class="into">王者荣耀官方虽然每个版本都强调平衡，尽最大的努力平衡每一个英雄，但是在目前版本中总有一些英雄的表现不近人意，非常的弱势，胜率常年垫底，那么当前版本最应该加强的英雄是哪一些呢...</p>
+								<span class="form">
+									来源：&nbsp;
+									<a href="#">07073游戏网</a>
+								</span>
+							</div>
+						</div>
+						<div class="foot-tab-list">
+							<a href="#" class="bar-item1">
+								<img src="./image/f5fade11967b0995803a52a81f70a94a.jpg" alt="">
+							</a>
+							<div class="bar-item2">
+								<a href="javascript:;" class="tite6"></a>
+								<p class="into">王者荣耀官方虽然每个版本都强调平衡，尽最大的努力平衡每一个英雄，但是在目前版本中总有一些英雄的表现不近人意，非常的弱势，胜率常年垫底，那么当前版本最应该加强的英雄是哪一些呢...</p>
+								<span class="form">
+									来源：&nbsp;
+									<a href="#">07073游戏网</a>
+								</span>
+							</div>
+						</div>
+						<div class="foot-tab-list">
+							<a href="#" class="bar-item1">
+								<img src="./image/f5fade11967b0995803a52a81f70a94a.jpg" alt="">
+							</a>
+							<div class="bar-item2">
+								<a href="#" class="tite">王者荣耀的五个废材英雄：韩信上榜第一名胜率垫底</a>
+								<p class="into">王者荣耀官方虽然每个版本都强调平衡，尽最大的努力平衡每一个英雄，但是在目前版本中总有一些英雄的表现不近人意，非常的弱势，胜率常年垫底，那么当前版本最应该加强的英雄是哪一些呢...</p>
+								<span class="form">
+									来源：&nbsp;
+									<a href="#">07073游戏网</a>
+								</span>
+							</div>
+						</div>
+						<div class="foot-tab-list">
+							<a href="#" class="bar-item1">
+								<img src="./image/f5fade11967b0995803a52a81f70a94a.jpg" alt="">
+							</a>
+							<div class="bar-item2">
+								<a href="#" class="tite">王者荣耀的五个废材英雄：韩信上榜第一名胜率垫底</a>
+								<p class="into">王者荣耀官方虽然每个版本都强调平衡，尽最大的努力平衡每一个英雄，但是在目前版本中总有一些英雄的表现不近人意，非常的弱势，胜率常年垫底，那么当前版本最应该加强的英雄是哪一些呢...</p>
+								<span class="form">
+									来源：&nbsp;
+									<a href="#">07073游戏网</a>
+								</span>
+							</div>
+						</div>
+						<div class="foot-tab-list">
+							<a href="#" class="bar-item1">
+								<img src="./image/f5fade11967b0995803a52a81f70a94a.jpg" alt="">
+							</a>
+							<div class="bar-item2">
+								<a href="#" class="tite">王者荣耀的五个废材英雄：韩信上榜第一名胜率垫底</a>
+								<p class="into">王者荣耀官方虽然每个版本都强调平衡，尽最大的努力平衡每一个英雄，但是在目前版本中总有一些英雄的表现不近人意，非常的弱势，胜率常年垫底，那么当前版本最应该加强的英雄是哪一些呢...</p>
+								<span class="form">
+									来源：&nbsp;
+									<a href="#">07073游戏网</a>
+								</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="foot-tab-right">
+				<div class="slide1">
+					<ul class="clearfix slide">
+						<li><a href="#"><img src="./image/82bbb30f9d95b95ed8e2117cd37a321e.jpg" alt=""></a></li>
+						<li class="selected"><a href="#"><img src="./image/886cbc567bfdedaf5e02fecd4bd90451.jpg" alt=""></a></li>
+						<li><a href="#"><img src="./image/82bbb30f9d95b95ed8e2117cd37a321e.jpg" alt=""></a></li>
+						<li><a href="#"><img src="./image/886cbc567bfdedaf5e02fecd4bd90451.jpg" alt=""></a></li>
+						<div class="tupian-left"><img src="./image/a-left.40f0bff.png" alt=""></div>
+						<div class="tupian-right"><img src="./image/a-right.c4ea321.png" alt=""></div>
+					</ul>
+				</div>
+				<div class="discount">
+					<div class="card1">
+						<h2>每日优惠</h2>
+					</div>
+					<div class="card2">
+						<div class="card2-word-sss">
+							<div class="card2-word">
+								<span>e家帮 615元优惠券</span>
+								<a href="#">抢</a>
+							</div>
+							<div class="card2-word">
+								<span>e家帮 615元优惠券</span>
+								<a href="#">抢</a>
+							</div>
+							<div class="card2-word">
+								<span>e家帮 615元优惠券</span>
+								<a href="#">抢</a>
+							</div>
+						</div>
+						<div class="card2-word-sss">
+							<div class="card2-word">
+								<span>懒人厨房 美味食谱</span>
+								<a href="#">抢</a>
+							</div>
+						</div>
+					</div>
+					<div class="card3">
+						<span class="active"></span>
+						<span></span>
+					</div>
+				</div>
+				<div class="last">
+					<div class="last-one">
+						<div class="normal">
+							<div class="normal-one">
+								<i></i>
+								<a href="javascript:;" class="">更多>></a>
+							</div>
+							<div class="normal-two">
+								<div class="page">
+									<ul class="clearfix page-one">
+										<li>
+											<a href="javascript:;">
+												<img src="./image/588aa2a5f32e4e29cb6c64f561e86a0d.png" alt="">
+												<p>查话费</p>
+											</a>
+											<a href="javascript:;">
+												<img src="./image/588aa2a5f32e4e29cb6c64f561e86a0d.png" alt="">
+												<p>查话费</p>
+											</a>
+											<a href="javascript:;">
+												<img src="./image/588aa2a5f32e4e29cb6c64f561e86a0d.png" alt="">
+												<p>查话费</p>
+											</a>
+										</li>
+										<li>
+											<a href="javascript:;">
+												<img src="./image/c1a192d474927c1222c0d07f96f1b054.png" alt="">
+												<p>查地图</p>
+											</a>
+											<a href="javascript:;">
+												<img src="./image/c1a192d474927c1222c0d07f96f1b054.png" alt="">
+												<p>查地图</p>
+											</a>
+											<a href="javascript:;">
+												<img src="./image/c1a192d474927c1222c0d07f96f1b054.png" alt="">
+												<p>查地图</p>
+											</a>
+										</li>
+										<li>
+											<a href="javascript:;">
+												<img src="./image/588aa2a5f32e4e29cb6c64f561e86a0d.png" alt="">
+												<p>查话费</p>
+											</a>
+											<a href="javascript:;">
+												<img src="./image/588aa2a5f32e4e29cb6c64f561e86a0d.png" alt="">
+												<p>查话费</p>
+											</a>
+											<a href="javascript:;">
+												<img src="./image/588aa2a5f32e4e29cb6c64f561e86a0d.png" alt="">
+												<p>查话费</p>
+											</a>
+										</li>
+										<li>
+											<a href="javascript:;">
+												<img src="./image/c1a192d474927c1222c0d07f96f1b054.png" alt="">
+												<p>查地图</p>
+											</a>
+											<a href="javascript:;">
+												<img src="./image/c1a192d474927c1222c0d07f96f1b054.png" alt="">
+												<p>查地图</p>
+											</a>
+											<a href="javascript:;">
+												<img src="./image/c1a192d474927c1222c0d07f96f1b054.png" alt="">
+												<p>查地图</p>
+											</a>
+										</li>
+									</ul>
+								</div>
+								<a href="javascript:;" class="a-left"><i></i></a>
+								<a href="javascript:;" class="a-right"><i></i></a>
+							</div>
+							<div class="normal-line"></div>
+							<div class="normal-content">
+								<a href="javascript:;">周公解梦</a>
+								<a href="javascript:;">周公解梦</a>
+								<a href="javascript:;">周公解梦</a>
+								<a href="javascript:;">周公解梦</a>
+								<a href="javascript:;">周公解梦</a>
+								<a href="javascript:;">周公解梦</a>
+								<a href="javascript:;">周公解梦</a>
+								<a href="javascript:;">周公解梦</a>
+								<a href="javascript:;">周公解梦</a>
+								<a href="javascript:;">周公解梦</a>
+								<a href="javascript:;">周公解梦</a>
+								<a href="javascript:;">周公解梦</a>
+							</div>
+						</div>
+					</div>
+					<div class="last-one0">
+						<div class="normal">
+							<div class="normal-one">
+								<i></i>
+								<a href="javascript:;" class="">更多>></a>
+							</div>
+							<div class="normal-two">
+								<div class="page">
+									<ul class="clearfix page-one0">
+										<li>
+											<a href="javascript:;">
+												<img src="./image/588aa2a5f32e4e29cb6c64f561e86a0d.png" alt="">
+												<p>查话费</p>
+											</a>
+											<a href="javascript:;">
+												<img src="./image/588aa2a5f32e4e29cb6c64f561e86a0d.png" alt="">
+												<p>查话费</p>
+											</a>
+											<a href="javascript:;">
+												<img src="./image/588aa2a5f32e4e29cb6c64f561e86a0d.png" alt="">
+												<p>查话费</p>
+											</a>
+										</li>
+										<li>
+											<a href="javascript:;">
+												<img src="./image/c1a192d474927c1222c0d07f96f1b054.png" alt="">
+												<p>查地图</p>
+											</a>
+											<a href="javascript:;">
+												<img src="./image/c1a192d474927c1222c0d07f96f1b054.png" alt="">
+												<p>查地图</p>
+											</a>
+											<a href="javascript:;">
+												<img src="./image/c1a192d474927c1222c0d07f96f1b054.png" alt="">
+												<p>查地图</p>
+											</a>
+										</li>
+										<li>
+											<a href="javascript:;">
+												<img src="./image/588aa2a5f32e4e29cb6c64f561e86a0d.png" alt="">
+												<p>查话费</p>
+											</a>
+											<a href="javascript:;">
+												<img src="./image/588aa2a5f32e4e29cb6c64f561e86a0d.png" alt="">
+												<p>查话费</p>
+											</a>
+											<a href="javascript:;">
+												<img src="./image/588aa2a5f32e4e29cb6c64f561e86a0d.png" alt="">
+												<p>查话费</p>
+											</a>
+										</li>
+										<li>
+											<a href="javascript:;">
+												<img src="./image/c1a192d474927c1222c0d07f96f1b054.png" alt="">
+												<p>查地图</p>
+											</a>
+											<a href="javascript:;">
+												<img src="./image/c1a192d474927c1222c0d07f96f1b054.png" alt="">
+												<p>查地图</p>
+											</a>
+											<a href="javascript:;">
+												<img src="./image/c1a192d474927c1222c0d07f96f1b054.png" alt="">
+												<p>查地图</p>
+											</a>
+										</li>
+									</ul>
+								</div>
+								<a href="javascript:;" class="a-left0"><i></i></a>
+								<a href="javascript:;" class="a-right0"><i></i></a>
+							</div>
+							<div class="normal-line"></div>
+							<div class="normal-content">
+								<a href="javascript:;">周公解梦</a>
+								<a href="javascript:;">周公解梦</a>
+								<a href="javascript:;">周公解梦</a>
+								<a href="javascript:;">周公解梦</a>
+								<a href="javascript:;">周公解梦</a>
+								<a href="javascript:;">周公解梦</a>
+								<a href="javascript:;">周公解梦</a>
+								<a href="javascript:;">周公解梦</a>
+								<a href="javascript:;">周公解梦</a>
+								<a href="javascript:;">周公解梦</a>
+								<a href="javascript:;">周公解梦</a>
+								<a href="javascript:;">周公解梦</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- <div class="youhui">
+					<h2>每日优惠</h2>
+					<div class="wrapper"></div>
+				</div> -->
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		$(function(){
+			//轮播1
+            function goLeft(){
+                $(".movie-list").stop(true,true).animate({
+                    marginLeft: "-=450px",
+                },500,function(){
+                    var first = $(".movie-list li").first();
+                    var last = $(".movie-list li").last();
+                    first.insertAfter(last);
+                    $(".movie-list").css("margin-left","-450px");
+
+                })
+            }
+           	function goRight(){
+                $(".movie-list").stop(true,true).animate({
+                    marginLeft:"+=450px",
+                },500,function(){
+                    var first = $(".movie-list li").first();
+                    var last = $(".movie-list li").last();
+                    last.insertBefore(first);
+                    $(".movie-list").css("margin-left","-450px");
+                })
+        	}
+			$(".contro-left").click(function(){
+				goLeft()
+			});
+			$(".contro-right").click(function(){
+				goRight()
+			});
+			function exportTimer(){
+                timer = setInterval(function(){
+                    goLeft();
+                },2000);
+            }
+             exportTimer();
+             $(".contro-left").hover(
+                function(){
+                    clearInterval(timer)
+                },
+                function(){
+                    exportTimer();
+                }
+            )
+             $(".contro-right").hover(
+                function(){
+                    clearInterval(timer)
+                },
+                function(){
+                    exportTimer();
+                }
+            )
+             //轮播2
+             function Left(){
+              $(".slide").stop(true,true).animate({
+                    marginLeft: "-=270px",
+                },500,function(){
+                    var first = $(".slide li").first();
+                    var last = $(".slide li").last();
+                    first.insertAfter(last);
+                    $(".slide").css("margin-left","-270px");
+
+                })
+            }
+           	function Right(){
+                $(".slide").stop(true,true).animate({
+                    marginLeft:"+=270px",
+                },500,function(){
+                    var first = $(".slide li").first();
+                    var last = $(".slide li").last();
+                    last.insertBefore(first);
+                    $(".slide").css("margin-left","-270px");
+                })
+        	}
+			$(".tupian-left").click(function(){
+				Left()
+			});
+			$(".tupian-right").click(function(){
+				Right()
+			});
+			function exportTimer0(){
+                timer0 = setInterval(function(){
+                    Left();
+                },2000);
+            }
+             exportTimer0();
+             $(".tupian-left").hover(
+                function(){
+                    clearInterval(timer0)
+                },
+                function(){
+                    exportTimer0();
+                }
+            )
+             $(".tupian-right").hover(
+                function(){
+                    clearInterval(timer0)
+                },
+                function(){
+                    exportTimer0();
+                }
+            )
+             //句子轮播
+             function Left6(){
+              $(".top-right").stop(true,true).animate({
+                    marginTop: "-=22px",
+                },500,function(){
+                    var first = $(".top-right li").first();
+                    var last = $(".top-right li").last();
+                    first.insertAfter(last);
+                    $(".top-right").css("margin-top","-22px");
+
+                })
+            }
+			function exportTimer6(){
+                timer6 = setInterval(function(){
+                    Left6();
+                },2000);
+            }
+             exportTimer6();
+             $(".top-right li").hover(
+                function(){
+                    clearInterval(timer6)
+                },
+                function(){
+                    exportTimer6();
+                }
+            )
+             //星座1
+              function Left9(){
+              $(".page-one").stop(true,true).animate({
+                    marginLeft: "-=262px",
+                },500,function(){
+                    var first = $(".page-one li").first();
+                    var last = $(".page-one li").last();
+                    first.insertAfter(last);
+                    $(".page-one").css("margin-left","-262px");
+
+                })
+            }
+           	function Right9(){
+                $(".page-one").stop(true,true).animate({
+                    marginLeft:"+=262px",
+                },500,function(){
+                    var first = $(".page-one li").first();
+                    var last = $(".page-one li").last();
+                    last.insertBefore(first);
+                    $(".page-one").css("margin-left","-262px");
+                })
+        	}
+			$(".a-left").click(function(){
+				Left9()
+			});
+			$(".a-right").click(function(){
+				Right9()
+			});
+			function exportTimer9(){
+                timer9 = setInterval(function(){
+                    Left9();
+                },2000);
+            }
+             exportTimer9();
+             $(".a-left").hover(
+                function(){
+                    clearInterval(timer9)
+                },
+                function(){
+                    exportTimer9();
+                }
+            )
+             $(".a-right").hover(
+                function(){
+                    clearInterval(timer9)
+                },
+                function(){
+                    exportTimer9();
+                }
+            )
+             //星座2
+             function Left92(){
+              $(".page-one0").stop(true,true).animate({
+                    marginLeft: "-=262px",
+                },500,function(){
+                    var first = $(".page-one0 li").first();
+                    var last = $(".page-one0 li").last();
+                    first.insertAfter(last);
+                    $(".page-one0").css("margin-left","-262px");
+
+                })
+            }
+           	function Right92(){
+                $(".page-one0").stop(true,true).animate({
+                    marginLeft:"+=262px",
+                },500,function(){
+                    var first = $(".page-one0 li").first();
+                    var last = $(".page-one0 li").last();
+                    last.insertBefore(first);
+                    $(".page-one0").css("margin-left","-262px");
+                })
+        	}
+			$(".a-left0").click(function(){
+				Left92()
+			});
+			$(".a-right0").click(function(){
+				Right92()
+			});
+			function exportTimer92(){
+                timer92 = setInterval(function(){
+                    Left92();
+                },2000);
+            }
+             exportTimer92();
+             $(".a-left0").hover(
+                function(){
+                    clearInterval(timer92)
+                },
+                function(){
+                    exportTimer92();
+                }
+            )
+             $(".a-right0").hover(
+                function(){
+                    clearInterval(timer92)
+                },
+                function(){
+                    exportTimer92();
+                }
+            )
+             //优惠新的
+             var index = $(".card3 span.active").index()			
+			function goUp(){
+				if(index == 1) {index = -1;}
+					$(".card3 span").eq(index+=1).addClass("active").siblings().removeClass("active");
+					$(".card2-word-sss").removeClass("hide").eq(index).slideDown().siblings().addClass("hide").slideUp();
+			};	
+			function goDown(){	
+				if(index == 0) {index = 2;}
+					$(".card3 span").eq(index-=1).addClass("active").siblings().removeClass("active");
+			};
+			$(".card3 span").click(function(){
+               goUp()
+            })
+             $(".card3 span.active").click(function(){
+                goDown()
+            })
+             function exportTimer3(){
+                timer3 = setInterval(function(){
+                    goUp();
+                },3000);
+            }
+            exportTimer3();
+
+             $(".card3 span").hover(
+                function(){
+                    clearInterval(timer3)
+                },
+                function(){
+                    exportTimer3();
+                }
+            )
+             $(".card3 span.active").hover(
+                function(){
+                    clearInterval(timer3)
+                },
+                function(){
+                    exportTimer3();
+                }
+            )
+            // function goS(){
+            // 	var index = $(".card3 span.active").index();
+            //     if(index == 0) { index = 1; }
+            //     $(".card3 span").eq(index-=1).addClass("active").siblings().removeClass("active");
+            //     $(".card2-word-sss").eq(index+=1).slideUp().siblings().slideDown();
+            // }
+            // function goX(){
+            //     var index = $(".card3 span.active").index();
+            //     if(index == 1) { index = -1; }
+            //     $(".card3 span").eq(index+=1).addClass("active").siblings().removeClass("active");
+            //     $(".card2-word-sss").eq(index-=1).slideUp().siblings().slideDown();
+            // }
+
+            // $(".card3 span").click(function(){
+            //     goX()
+            // })
+            //  $(".card3 span.active").click(function(){
+            //     goS()
+            // })
+            //  function exportTimer3(){
+            //     timer3 = setInterval(function(){
+            //         goX();
+            //     },3000);
+            // }
+            // exportTimer3();
+
+            //  $(".card3 span").hover(
+            //     function(){
+            //         clearInterval(timer3)
+            //     },
+            //     function(){
+            //         exportTimer3();
+            //     }
+            // )
+            //  $(".card3 span.active").hover(
+            //     function(){
+            //         clearInterval(timer3)
+            //     },
+            //     function(){
+            //         exportTimer3();
+            //     }
+            // )
+            //  $.ajax({
+            //     url: "http://test.zhituteam.com/index.php/home/api/getquestion",
+            //     type: "get",
+            //     dataType: "json",
+            //     data: {
+            //         type: 2,
+            //         level: 94,
+            //         lesson: 1360,
+            //         question_flag: 2,
+            //     },
+            //     success: function(res){
+            //         var list = res.result.lists;
+            //         var str = "";
+            //         for(var i = 0; i<list.length; i++){
+            //             str+="<div class='foot-tab-content'><div class='foot-tab-one'><div class='foot-tab-list'><a href='#' class='bar-item1'><img src='./image/f5fade11967b0995803a52a81f70a94a.jpg' alt=''></a><div class='bar-item2'><a href='#' class='tite'>"+list[i].data.title+"</a><p class='into'>王者荣耀官方虽然每个版本都强调平衡，尽最大的努力平衡每一个英雄，但是在目前版本中总有一些英雄的表现不近人意，非常的弱势，胜率常年垫底，那么当前版本最应该加强的英雄是哪一些呢...</p><span class='form'>来源：&nbsp;<a href='#'>07073游戏网</a></span></div></div></div></div>";
+            //         }
+            //         $(".foot-tab-content").html(str)
+            //         console.log(str);
+            //     },
+            //     error: function(res){
+            //         console.log(res);
+            //     }
+            // })
+             //窗口移动
+             $(window).scroll(function(){
+				// console.log($(".middle-bar").offset().top, $(window).scrollTop(), $(window).height(), $("body").height() );
+				console.log($(".foot-tab-bar0").offset().top,);//获取匹配元素在当前视口的相对偏移量
+				// var middleBarOffsetTop = $(".middle-bar").offset().top;
+				var windowScrolltop = $(window).scrollTop();//匹配元素相对于滚动条顶部的偏移量
+				// var windowHeight = $(window).height();
+				// var bodyHeight = $("body").height();
+				if(windowScrolltop >= 462){
+					$(".foot-tab-bar0").addClass("feet").removeClass("normal-foot-tab-bar0")
+				}else {
+					$(".foot-tab-bar0").removeClass("feet").addClass("normal-foot-tab-bar0")
+				}
+				// if(windowScrolltop >= 803){
+				// 	$(".normal-search").addClass("normal").removeClass("normal-n")
+				// }else {
+				// 	$(".normal-search").removeClass("normal").addClass("normal-n")
+				// }
+     		})
+
+
+
+			// $(window).ready(function(){
+			// 	var middleBarOffsetTop = $(".foot-tab-content").offset().top;获取匹配元素在当前视口的相对偏移
+			// 	var windowHeight = $(window).height();
+			// 	var windowScrolltop = $(window).scrollTop();获取匹配元素相对滚动条顶部的偏移。
+			// 	var bodyHeight = $("body").height();
+			// 	if(bodyHeight-(windowHeight+windowScrolltop) <= middleBarOffsetTop){
+			// 		$(".foot-tab-bar0").addClass("feet")
+			// 	}else {
+			// 		$(".foot-tab-bar0").removeClass("feet")
+			// 	}
+
+			// var index = $(".movie-list li.selected").index();
+			// function goLeft(){
+			// 	if(index == 2) {index = -1;}
+			// 	$(".movie-list li").eq(index+=1).stop(true,true).fadeIn().siblings().fadeOut();
+			// }
+			// function goRight(){
+			// 	if(index == 0) {index = 3;}
+			// 	$(".movie-list li").eq(index-=1).stop(true,true).fadeIn().siblings().fadeOut();
+			// }
+			// $(".tupian-left").click(function(){
+			// 	goLeft()
+			// });
+			// console.log(goLeft)
+			// $(".tupian-right").click(function(){
+			// 	goRight()
+			// });
+			// function exportTimer(){
+   //              timer = setInterval(function(){
+   //                  goLeft();
+   //              },2000);
+   //          }
+   //           exportTimer();
+   //           $(".tupian-left").hover(
+   //              function(){
+   //                  clearInterval(timer)
+   //              },
+   //              function(){
+   //                  exportTimer();
+   //              }
+   //          )
+   //           $(".tupian-right").hover(
+   //              function(){
+   //                  clearInterval(timer)
+   //              },
+   //              function(){
+   //                  exportTimer();
+   //              }
+   //          )
+		})
+	</script>
+</body>
+</html>
+
+
+
+
